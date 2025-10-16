@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // Ganti dengan URL dan Anon Key dari proyek Supabase-mu
+    const SUPABASE_URL = 'https://zisateevmyushnucnwfs.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inppc2F0ZWV2bXl1c2hudWNud2ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NjI2MzUsImV4cCI6MjA3NjEzODYzNX0.ssUcxnfZ2Fdwj3J2cG50t6ynvnXNIFkmZdnCnxSzjc0';
+
+    // Buat satu klien Supabase yang akan kita gunakan di script.js
+    const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  </script>
+
+  </head>
+<body>
+  <script src="script.js" defer></script>
+</body>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Obrolin ajaa — Ruang Diskusi Tanpa Batas</title>

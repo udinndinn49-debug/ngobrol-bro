@@ -1,111 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Obrolin ajaa — Ruang Diskusi Tanpa Batas</title>
+    <link rel="stylesheet" href="style.css">
 
-  <script>
-    // Ganti dengan URL dan Anon Key dari proyek Supabase-mu
-    const SUPABASE_URL = 'https://zisateevmyushnucnwfs.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inppc2F0ZWV2bXl1c2hudWNud2ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NjI2MzUsImV4cCI6MjA3NjEzODYzNX0.ssUcxnfZ2Fdwj3J2cG50t6ynvnXNIFkmZdnCnxSzjc0';
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    // Buat satu klien Supabase yang akan kita gunakan di script.js
-    const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  </script>
+    <script>
+        // Kunci dan URL Supabase Anda
+        const SUPABASE_URL = 'https://zisateevmyushnucnwfs.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inppc2F0ZWV2bXl1c2hudWNud2ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NjI2MzUsImV4cCI6MjA3NjEzODYzNX0.ssUcxnfZ2Fdwj3J2cG50t6ynvnXNIFkmZdnCnxSzjc0';
 
-  </head>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const SUPABASE_URL = 'https://zisateevmyushnucnwfs.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inppc2F0ZWV2bXl1c2hudWNud2ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NjI2MzUsImV4cCI6MjA3NjEzODYzNX0.ssUcxnfZ2Fdwj3J2cG50t6ynvnXNIFkmZdnCnxSzjc0';
-  const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-</script>
-<script src="script.js" defer></script>
-<body>
-  <script src="script.js" defer></script>
-</body>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Obrolin ajaa — Ruang Diskusi Tanpa Batas</title>
-  
-  <link rel="stylesheet" href="style.css">
+        // Buat klien Supabase yang akan digunakan di script.js
+        const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    </script>
 
-  <script>
-    // SCRIPT INI PENTING UNTUK TETAP DI SINI!
-    // Tujuannya adalah menerapkan tema gelap secepat mungkin
-    // sebelum halaman selesai dimuat untuk menghindari kedipan (flash).
-    (function() {
-      const savedTheme = localStorage.getItem('obrolin_theme');
-      if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark-mode');
-      }
-    })();
-  </script>
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('obrolin_theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark-mode');
+        }
+      })();
+    </script>
 </head>
+
 <body>
-  <div class="app">
-    <header>
-      <div class="brand">
-        <div class="logo">OA</div>
-        <div>
-          <h1>Obrolin ajaa</h1>
-          <p class="lead">Ruang Diskusi Tanpa Batas</p>
-        </div>
-      </div>
-      <div class="controls">
-        <button class="icon-btn" id="theme-toggle" title="Ganti Tema">
-          <span id="theme-icon">☀️</span>
-        </button>
-        <div class="profile" id="top-profile">
-          </div>
-        <button class="icon-btn" id="notif-btn" title="Notifikasi">
-          🔔 <span id="notif-count" style="margin-left: 6px"></span>
-        </button>
-        <button class="btn" id="new-thread-btn">Buat Thread</button>
-      </div>
-    </header>
-
-    <div class="grid">
-      <aside class="card">
-        <h3 style="margin-top: 0">Kategori</h3>
-        <div class="categories" id="categories"></div>
-        <hr style="margin: 12px 0; border-color: var(--border);">
-        <div>
-          <strong>Info</strong>
-          <p style="color: var(--muted); font-size: 13px">Demo: penyimpanan lokal (localStorage). Cocok untuk prototipe dan belajar.</p>
-        </div>
-      </aside>
-
-      <main>
-        <div class="card" id="composer-card">
-          <div style="display: flex; gap: 10px; align-items: flex-start">
-            <div class="avatar" id="composer-avatar">G</div>
-            <div style="flex: 1">
-              <input type="text" id="thread-title" placeholder="Judul thread..." />
-              <div style="height: 8px"></div>
-              <textarea id="thread-body" placeholder="Tulis sesuatu untuk memulai diskusi..."></textarea>
-              <div style="height: 8px"></div>
-              <input type="text" id="thread-media-url" placeholder="URL Foto/Video/GIF (Opsional)" />
-              
-              <div style="display: flex; gap: 8px; justify-content: space-between; margin-top: 8px; align-items: center">
-                <select id="thread-category"></select>
-                <div style="display: flex; gap: 8px">
-                  <button class="btn" id="post-thread">Posting</button>
-                  <button class="btn secondary" id="clear-thread">Bersihkan</button>
+    <div class="app">
+        <header>
+            <div class="brand">
+                <div class="logo">OA</div>
+                <div>
+                    <h1>Obrolin ajaa</h1>
+                    <p class="lead">Ruang Diskusi Tanpa Batas</p>
                 </div>
-              </div>
             </div>
-          </div>
+            <div class="controls">
+                <button class="icon-btn" id="theme-toggle" title="Ganti Tema">
+                    <span id="theme-icon">☀️</span>
+                </button>
+                <div class="profile" id="top-profile">
+                    </div>
+                <button class="icon-btn" id="notif-btn" title="Notifikasi">
+                    🔔 <span id="notif-count" style="margin-left: 6px"></span>
+                </button>
+                <button class="btn" id="new-thread-btn">Buat Thread</button>
+            </div>
+        </header>
+
+        <div class="grid">
+            <aside class="card">
+                <h3 style="margin-top: 0">Kategori</h3>
+                <div class="categories" id="categories"></div>
+                <hr style="margin: 12px 0; border-color: var(--border);">
+                <div>
+                    <strong>Info</strong>
+                    <p style="color: var(--muted); font-size: 13px">Aplikasi ini terhubung dengan Supabase sebagai backend.</p>
+                </div>
+            </aside>
+
+            <main>
+                <div class="card" id="composer-card">
+                    <div style="display: flex; gap: 10px; align-items: flex-start">
+                        <div class="avatar" id="composer-avatar">G</div>
+                        <div style="flex: 1">
+                            <input type="text" id="thread-title" placeholder="Judul thread..." />
+                            <div style="height: 8px"></div>
+                            <textarea id="thread-body" placeholder="Tulis sesuatu untuk memulai diskusi..."></textarea>
+                            <div style="height: 8px"></div>
+                            <input type="text" id="thread-media-url" placeholder="URL Foto/Video/GIF (Opsional)" />
+                            
+                            <div style="display: flex; gap: 8px; justify-content: space-between; margin-top: 8px; align-items: center">
+                                <select id="thread-category"></select>
+                                <div style="display: flex; gap: 8px">
+                                    <button class="btn" id="post-thread">Posting</button>
+                                    <button class="btn secondary" id="clear-thread">Bersihkan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 14px"></div>
+                <div id="threads-list"></div>
+            </main>
         </div>
 
-        <div style="height: 14px"></div>
-
-        <div id="threads-list"></div>
-      </main>
+        <div id="modal-root"></div>
     </div>
 
-    <div id="modal-root"></div>
-  </div>
-
-  <script src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

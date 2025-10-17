@@ -1,3 +1,4 @@
+// BENAR
 // script.js (Bagian Paling Atas)
 
 // ===== Inisialisasi Supabase Client (PERBAIKAN) =====

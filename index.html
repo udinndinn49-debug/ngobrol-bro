@@ -656,7 +656,7 @@
 
       if (currentUser) {
 
-        const prof = el(<div style="display:flex;gap:8px;align-items:center"><div class="avatar">${currentUser.name[0].toUpperCase()}</div><div style="text-align:right"><div style="font-size:13px">${currentUser.name}</div><div style="font-size:12px;color:var(--muted)">${currentUser.email}</div></div><button class="btn secondary" id="logout">Keluar</button></div>);
+        const prof = el(`<div style="display:flex;gap:8px;align-items:center"><div class="avatar">${currentUser.name[0].toUpperCase()}</div><div style="text-align:right"><div style="font-size:13px">${currentUser.name}</div><div style="font-size:12px;color:var(--muted)">${currentUser.email}</div></div><button class="btn secondary" id="logout">Keluar</button></div>`);
 
         root.appendChild(prof);
 
@@ -664,7 +664,7 @@
 
       } else {
 
-        const login = el(<div style="display:flex;gap:6px;align-items:center"><button class="btn" id="open-login">Masuk / Daftar</button></div>);
+        const login = el(`<div style="display:flex;gap:6px;align-items:center"><button class="btn" id="open-login">Masuk / Daftar</button></div>`);
 
         root.appendChild(login);
 
@@ -746,7 +746,7 @@
 
     function showModal(inner) {
 
-      modalRoot.innerHTML = <div class="modal-backdrop">${inner}</div>;
+      modalRoot.innerHTML = `<div class="modal-backdrop">${inner}</div>`;
 
     }
 
@@ -764,7 +764,7 @@
 
       cats.forEach(c => {
 
-        const d = el(<div class="cat ${c === active ? 'active' : ''}" data-cat="${c}">${c} <span style="color:var(--muted)"></span></div>);
+        const d = el(`<div class="cat ${c === active ? 'active' : ''}" data-cat="${c}">${c} <span style="color:var(--muted)"></span></div>`);
 
         d.onclick = () => { renderCategories(c); renderThreads(c); document.getElementById('thread-category').value = (DEFAULT_CATS.includes(c) ? c : DEFAULT_CATS[0]); }
 
@@ -866,11 +866,11 @@
 
         if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext)) {
 
-            mediaHtml = <img src="${url}" alt="Thread Media" loading="lazy">;
+            mediaHtml = `<img src="${url}" alt="Thread Media" loading="lazy">`;
 
         } else if (['mp4', 'webm', 'ogg'].includes(ext)) {
 
-            mediaHtml = <video src="${url}" controls loading="lazy"></video>;
+            mediaHtml = `<video src="${url}" controls loading="lazy"></video>`;
 
         }
 
@@ -878,7 +878,7 @@
 
         if (mediaHtml) {
 
-            return <div class="thread-media">${mediaHtml}</div>;
+            return `<div class="thread-media">${mediaHtml}</div>`;
 
         }
 
@@ -1096,7 +1096,7 @@
 
           const rep = document.createElement('div'); rep.className = 'reply'; rep.style.marginLeft = (depth * 15) + 'px'; // Increased indent
 
-          rep.innerHTML = <div style="display:flex;justify-content:space-between"><div><strong>${escapeHtml(r.authorName)}</strong><div class="meta">${new Date(r.created).toLocaleString()}</div></div><div class="meta">Votes: <span class="votes-count-reply">${r.votes}</span></div></div><div style="margin-top:8px;white-space:pre-wrap">${escapeHtml(r.body)}</div><div style="margin-top:8px;display:flex;gap:8px"><button class="btn small" data-id="${r.id}" data-action="reply">Balas</button><button class="icon-btn" data-id="${r.id}" data-action="up">▲</button><button class="icon-btn" data-id="${r.id}" data-action="down">▼</button></div>;
+          rep.innerHTML = `<div style="display:flex;justify-content:space-between"><div><strong>${escapeHtml(r.authorName)}</strong><div class="meta">${new Date(r.created).toLocaleString()}</div></div><div class="meta">Votes: <span class="votes-count-reply">${r.votes}</span></div></div><div style="margin-top:8px;white-space:pre-wrap">${escapeHtml(r.body)}</div><div style="margin-top:8px;display:flex;gap:8px"><button class="btn small" data-id="${r.id}" data-action="reply">Balas</button><button class="icon-btn" data-id="${r.id}" data-action="up">▲</button><button class="icon-btn" data-id="${r.id}" data-action="down">▼</button></div>`;
 
           container.appendChild(rep);
 
@@ -1116,7 +1116,7 @@
 
             const box = document.createElement('div'); box.className = 'reply-box'; box.style.marginTop = '8px';
 
-            box.innerHTML = <textarea placeholder="Balas..." style="width:100%;min-height:60px; padding:8px;"></textarea><div style="display:flex;justify-content:flex-end;margin-top:6px"><button class="btn small">Kirim</button></div>;
+            box.innerHTML = `<textarea placeholder="Balas..." style="width:100%;min-height:60px; padding:8px;"></textarea><div style="display:flex;justify-content:flex-end;margin-top:6px"><button class="btn small">Kirim</button></div>`;
 
             rep.appendChild(box);
 
@@ -1182,7 +1182,7 @@
 
       const unread = data.notifications.filter(n => n.userId === currentUser.id && !n.read).length;
 
-      span.innerHTML = unread ? <span class="notif-badge">${unread}</span> : '';
+      span.innerHTML = unread ? `<span class="notif-badge">${unread}</span>` : '';
 
       btn.onclick = () => { openNotifPanel(); }
 
@@ -1194,11 +1194,11 @@
 
       const nots = data.notifications.filter(n => n.userId === currentUser.id).sort((a, b) => b.created.localeCompare(a.created));
 
-      let html = <div class="card" style="max-width:420px; padding:20px;"><h3>Notifikasi (${nots.length})</h3><div style="display:flex;flex-direction:column;gap:8px; margin-top:12px">;
+      let html = `<div class="card" style="max-width:420px; padding:20px;"><h3>Notifikasi (${nots.length})</h3><div style="display:flex;flex-direction:column;gap:8px; margin-top:12px">`;
 
-      nots.forEach(n => { html += <div style="padding:8px;border-radius:8px;background:${n.read ? 'var(--card)' : 'rgba(37,99,235,0.08)'}; border:1px solid var(--border);"><div style="font-weight:700">${escapeHtml(n.from)}</div><div style="color:var(--muted);font-size:13px">Membalas thread: <a href="#t=${n.threadId}" onclick="closeModal(); setTimeout(()=>openThread('${n.threadId}'), 100);" style="color:var(--accent); text-decoration:none;">${escapeHtml(n.threadTitle)}</a></div><div style="font-size:12px;color:var(--muted)">${new Date(n.created).toLocaleString()}</div></div> });
+      nots.forEach(n => { html += `<div style="padding:8px;border-radius:8px;background:${n.read ? 'var(--card)' : 'rgba(37,99,235,0.08)'}; border:1px solid var(--border);"><div style="font-weight:700">${escapeHtml(n.from)}</div><div style="color:var(--muted);font-size:13px">Membalas thread: <a href="#t=${n.threadId}" onclick="closeModal(); setTimeout(()=>openThread('${n.threadId}'), 100);" style="color:var(--accent); text-decoration:none;">${escapeHtml(n.threadTitle)}</a></div><div style="font-size:12px;color:var(--muted)">${new Date(n.created).toLocaleString()}</div></div>` });
 
-      html += </div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:15px"><button class="btn secondary" id="close-notif">Tutup</button><button class="btn" id="mark-read">Tandai sudah dibaca</button></div></div>;
+      html += `</div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:15px"><button class="btn secondary" id="close-notif">Tutup</button><button class="btn" id="mark-read">Tandai sudah dibaca</button></div></div>`;
 
       showModal(html);
 

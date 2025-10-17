@@ -2,8 +2,7 @@
 
 // ===== Inisialisasi Supabase Client (PERBAIKAN) =====
 const SUPABASE_URL = 'https://zisateevmyushnucnwfs.supabase.co'; // Pastikan ini benar
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inppc2F0ZWV2bXl1c2hudWNud2ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NjI2MzUsImV4cCI6MjA3NjEzODYzNX0.ssUcxnfZ2Fdwj3J2cG50t6ynvnXNIFkmZdnCnxSzjc0'; // Pastikan ini benar
-
+const SUPABASE_ANON_KEY = 'sb_publishable_-exfRTTm2rD080T-jwesIQ_YaOVKiJp';
 // Panggil createClient dari objek 'supabase' global (dari CDN)
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // ===================================================================

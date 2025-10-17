@@ -1,5 +1,4 @@
-// BENAR
-// script.js (Bagian Paling Atas)
+// script.js
 
 // ===== Inisialisasi Supabase Client (PERBAIKAN) =====
 const SUPABASE_URL = 'URL_SUPABASE_ANDA'; // Pastikan ini benar
